@@ -14,6 +14,8 @@ https://user-images.githubusercontent.com/79845719/134516148-ec1f9fc8-8681-49ee-
 * Bootstrap
 * Testing - Jest & React testing library
 
+## Mockup
+[See mockup here](https://wireframe.cc/pro/pp/d15d1e02c463093)
 
 ## Installation
 ### To clone the repo
