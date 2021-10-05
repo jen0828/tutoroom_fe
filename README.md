@@ -26,6 +26,7 @@ $ cd tutoroom_fe
 
 ### To run React app
 ``` shell
+$ npm install
 $ npm start # Start the server at localhost:3000
 ```
 
