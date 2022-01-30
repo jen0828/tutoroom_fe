@@ -4,21 +4,30 @@ import { Container, Row, Col, Image, Button, Modal, Form } from 'react-bootstrap
 import { Twitter, Facebook, Linkedin, Instagram } from 'react-bootstrap-icons'
 import Upload from './Upload'
 
+
 export default function Profile() {
 
   //first get profile data
   const userId = localStorage.getItem('id')
-  const api_url=`http://localhost:3001/api/v1/tutors/${userId}`
+  
+  const api_url=`http://localhost:3001/api/v1/tutors`
+  
   const [profileData, setProfileData] = useState({})
   const getProfile = () => {
     axios.get(api_url)
     .then(response => {
-      console.log(response)
-      setProfileData(response.data.data.attributes)
-      setName(response.data.data.attributes.name)
-      setSubject(response.data.data.attributes.subject)
-      setBio(response.data.data.attributes.bio)
-      setImageURL(response.data.data.attributes.image_url)
+
+      let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id == userId})
+        
+      console.log('sameIdFinder')
+      console.log(sameIdFinder)
+      console.log(response.data.data[sameIdFinder])
+
+      setProfileData(response.data.data[sameIdFinder].attributes)
+      setName(response.data.data[sameIdFinder].attributes.name)
+      setSubject(response.data.data[sameIdFinder].attributes.subject)
+      setBio(response.data.data[sameIdFinder].attributes.bio)
+      setImageURL(response.data.data[sameIdFinder].attributes.image_url)
     })
   }
 

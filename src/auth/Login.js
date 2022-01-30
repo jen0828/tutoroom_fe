@@ -20,6 +20,7 @@ export default function Login() {
     .then(response => {
       console.log(response)
       localStorage.setItem('token', response.data.user.token)
+      localStorage.setItem('id', response.data.user.id)
       history.push('/search')
     })
   }
