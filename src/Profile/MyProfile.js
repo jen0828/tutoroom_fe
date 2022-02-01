@@ -18,16 +18,13 @@ export default function Profile() {
     .then(response => {
 
       let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id == userId})
-        
-      console.log('sameIdFinder')
-      console.log(sameIdFinder)
-      console.log(response.data.data[sameIdFinder])
-
+      
       setProfileData(response.data.data[sameIdFinder].attributes)
       setName(response.data.data[sameIdFinder].attributes.name)
       setSubject(response.data.data[sameIdFinder].attributes.subject)
       setBio(response.data.data[sameIdFinder].attributes.bio)
       setImageURL(response.data.data[sameIdFinder].attributes.image_url)
+
     })
   }
 
@@ -51,12 +48,16 @@ export default function Profile() {
       bio: bio,
       subject: subject,
       name: name,
-      image_url: imageURL
+      image_url: imageURL,
     }
 
-    axios.patch(api_url, newData)
+  
+     const tutorId = parseInt(userId) - 5
+     const api_url_1= `http://localhost:3001/api/v1/tutors/${tutorId}`
+
+
+    axios.patch(api_url_1, newData)
     .then(response => {
-      console.log(response)
       getProfile()
     })
   }
