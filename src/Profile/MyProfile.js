@@ -18,16 +18,20 @@ export default function Profile() {
     .then(response => {
 
       let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id == userId})
-      
+      //console.log(sameIdFinder)
+      let tutorId = response.data.data[sameIdFinder].id
+      //console.log(tutorId)
+      localStorage.setItem('tutorId', tutorId)
       setProfileData(response.data.data[sameIdFinder].attributes)
       setName(response.data.data[sameIdFinder].attributes.name)
       setSubject(response.data.data[sameIdFinder].attributes.subject)
       setBio(response.data.data[sameIdFinder].attributes.bio)
       setImageURL(response.data.data[sameIdFinder].attributes.image_url)
-
+      
     })
   }
 
+  
   useEffect(() => {
     getProfile()
     // eslint-disable-next-line
@@ -51,11 +55,12 @@ export default function Profile() {
       image_url: imageURL,
     }
 
-  
-     const tutorId = parseInt(userId) - 5
+
+     const tutorId = localStorage.getItem('tutorId')
+     //console.log('localstorage')
+     //console.log(tutorId)
      const api_url_1= `http://localhost:3001/api/v1/tutors/${tutorId}`
-
-
+     
     axios.patch(api_url_1, newData)
     .then(response => {
       getProfile()
