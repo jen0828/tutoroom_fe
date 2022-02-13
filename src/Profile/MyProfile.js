@@ -9,8 +9,6 @@ export default function Profile() {
 
   //first get profile data
   const userId = localStorage.getItem('id')
-  // let result = Number.isInteger(userId)
-  // console.log(result)
   const api_url=`http://localhost:3001/api/v1/tutors`
   
   const [profileData, setProfileData] = useState({})
