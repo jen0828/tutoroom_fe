@@ -18,10 +18,9 @@ export default function Profile() {
     .then(response => {
 
       let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id == userId})
-      //console.log(sameIdFinder)
       let tutorId = response.data.data[sameIdFinder].id
-      //console.log(tutorId)
       localStorage.setItem('tutorId', tutorId)
+
       setProfileData(response.data.data[sameIdFinder].attributes)
       setName(response.data.data[sameIdFinder].attributes.name)
       setSubject(response.data.data[sameIdFinder].attributes.subject)
@@ -57,8 +56,6 @@ export default function Profile() {
 
 
      const tutorId = localStorage.getItem('tutorId')
-     //console.log('localstorage')
-     //console.log(tutorId)
      const api_url_1= `http://localhost:3001/api/v1/tutors/${tutorId}`
      
     axios.patch(api_url_1, newData)
