@@ -9,7 +9,8 @@ export default function Profile() {
 
   //first get profile data
   const userId = localStorage.getItem('id')
-  
+  // let result = Number.isInteger(userId)
+  // console.log(result)
   const api_url=`http://localhost:3001/api/v1/tutors`
   
   const [profileData, setProfileData] = useState({})
@@ -17,7 +18,7 @@ export default function Profile() {
     axios.get(api_url)
     .then(response => {
 
-      let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id == userId})
+      let sameIdFinder = response.data.data.findIndex((a) => { return a.attributes.user_id === parseInt(userId)})
       let tutorId = response.data.data[sameIdFinder].id
       localStorage.setItem('tutorId', tutorId)
 
