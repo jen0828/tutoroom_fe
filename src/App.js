@@ -10,21 +10,21 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import TutorProfile from './Profile/TutorProfile';
 
 export default function App() {
-	return (
-		<div className="App">
-			<Router>
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/signup" component={Signup} />
-					<div>
-						<Navigation />
-						<Route exact path="/search" component={TutorList} />
-						<Route exact path="/search/:id" component={TutorProfile} />
-						<Route exact path="/profile" component={Profile} />
-					</div>
-				</Switch>
-			</Router>
-		</div>
-	);
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <div>
+            <Navigation />
+            <Route exact path="/search" component={TutorList} />
+            <Route exact path="/search/:id" component={TutorProfile} />
+            <Route exact path="/profile" component={Profile} />
+          </div>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
